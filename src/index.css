@@ -49,6 +49,7 @@ img {
 button {
   font-family: inherit;
   font-size: 100%;
+  margin: 5px;
   cursor: pointer;
   border: none;
   background: none;

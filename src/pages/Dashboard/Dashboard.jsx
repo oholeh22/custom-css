@@ -34,6 +34,7 @@ const Dashboard = () => {
     navigate('/')
   }
 
+
   return (
     <div className={s.wrapper}>
       {user && (
