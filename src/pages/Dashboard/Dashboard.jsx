@@ -9,6 +9,13 @@ const Dashboard = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
+    document.body.style.background = 'linear-gradient(135deg, #667eea, #764ba2)'
+    return () => {
+      document.body.style.background = ''
+    }
+  }, [])
+
+  useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser)
@@ -29,10 +36,17 @@ const Dashboard = () => {
 
   return (
     <div className={s.wrapper}>
-      <h1 className={s.heading}>
-        Welcome, {user?.email || 'user'} 🎉
-      </h1>
-      <button className={s.button} onClick={handleLogout}>
+      {user && (
+        <>
+          {user.photoURL && (
+            <img src={user.photoURL} alt="avatar" className={s.avatar} />
+          )}
+          <h1 className={s.heading}>
+            Welcome, {user.displayName || user.email} 🎉
+          </h1>
+        </>
+      )}
+      <button onClick={handleLogout} className={s.button}>
         Logout
       </button>
     </div>

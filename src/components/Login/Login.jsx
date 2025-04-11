@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  GithubAuthProvider,
 } from 'firebase/auth'
 import { auth } from '../../Firebase/Firebase'
 import s from './Login.module.css'
@@ -41,6 +42,17 @@ const Login = () => {
 
   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider()
+    try {
+      await signInWithPopup(auth, provider)
+      localStorage.setItem('auth', 'true')
+      navigate('/dashboard')
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+  const handleGitHubLogin = async () => {
+    const provider = new GithubAuthProvider()
     try {
       await signInWithPopup(auth, provider)
       localStorage.setItem('auth', 'true')
@@ -90,7 +102,9 @@ const Login = () => {
               <i className="bx bxl-google"></i>
             </a>
             <a href="#"><i className="bx bxl-facebook"></i></a>
-            <a href="#"><i className="bx bxl-github"></i></a>
+            <a href="#" onClick={handleGitHubLogin}>
+              <i className="bx bxl-github"></i>
+            </a>
             <a href="#"><i className="bx bxl-linkedin"></i></a>
           </div>
         </form>
@@ -135,7 +149,9 @@ const Login = () => {
               <i className="bx bxl-google"></i>
             </a>
             <a href="#"><i className="bx bxl-facebook"></i></a>
-            <a href="#"><i className="bx bxl-github"></i></a>
+            <a href="#" onClick={handleGitHubLogin}>
+              <i className="bx bxl-github"></i>
+            </a>
             <a href="#"><i className="bx bxl-linkedin"></i></a>
           </div>
         </form>
