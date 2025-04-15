@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth } from '../../Firebase/Firebase'
-import s from './dashboard.module.css'
+import s from './Dashboard.module.css'
 
 const Dashboard = () => {
   const [user, setUser] = useState(null)
